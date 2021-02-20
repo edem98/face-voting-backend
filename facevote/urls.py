@@ -5,8 +5,7 @@ from django.conf.urls.static import static
 from .views import index, FileUploadView
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
     path('upload/', FileUploadView.as_view()),
     path('api/election/', include('canditate.api.urls')),
     path('api/elector/', include('elector.api.urls')),

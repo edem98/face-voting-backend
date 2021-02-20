@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-import django_heroku
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +26,7 @@ SECRET_KEY = '*+ekeb$b0g6_nzxcxh_s9*4jj=n3c=6_kj72o-40y)h8q$s8nu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['64.227.11.112','localhost']
 
 
 # Application definition
@@ -40,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'rest_framework',
     'canditate.apps.CanditateConfig',
     'elector.apps.ElectorConfig',
@@ -48,7 +46,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,8 +80,12 @@ WSGI_APPLICATION = 'facevote.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'snapvote',
+        'USER': 'snapvote',
+        'PASSWORD': 'shr8hWnqECur7NKW',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -127,8 +128,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'staticfiles'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = 'media'
 
@@ -141,6 +144,22 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [],
     'DEFAULT_AUTHENTICATION_CLASSES': [],
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S.00Z',
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'logfile': {
+            'class': 'logging.FileHandler',
+            'filename': '/home/snapvote/server.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['logfile'],
+        },
+    },
 }
 
 # Admin style config
@@ -263,7 +282,3 @@ JAZZMIN_SETTINGS = {
     # Add a language dropdown into the admin
     "language_chooser": True,
 }
-
-CORS_ORIGIN_ALLOW_ALL =  True
-
-django_heroku.settings(locals())
