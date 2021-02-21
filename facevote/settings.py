@@ -265,6 +265,6 @@ JAZZMIN_SETTINGS = {
 
 
 try:
-    from prod_settings import *
+    from .prod_settings import *
 except ImportError:
     pass
