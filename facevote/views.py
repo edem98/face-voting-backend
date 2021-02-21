@@ -16,16 +16,15 @@ def index(request):
 class FileUploadView(View):
 
     def post(self, request, *args, **kwargs):
-        _, file = request.FILES.popitem()
-        # get file
-        file = file[0]
-        print(file.__dict__)
+        # _, file = request.FILES.popitem()
+        # # get file
+        # file = file[0]
+        # print(file.__dict__)
         # get elector
         elector_id = request.POST.get('electorId')
         print(elector_id)
-        if elector_id and file:
+        if elector_id:
             data = {
-                'image': file._name,
                 'electorId': elector_id
             }
             return JsonResponse(data, status=status.HTTP_200_OK)
