@@ -41,3 +41,5 @@ def api_vote_list(request, electorId):
     if request.method == 'GET':
         serializer = VoteSerializer(votes,many=True)
         return Response(serializer.data)
+
+

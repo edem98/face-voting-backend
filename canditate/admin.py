@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import register
-from .models import Candidate, Vote
+from .models import Candidate, Vote, ElectorsVote
 
 @register(Candidate)
 class CandidateAdmin(admin.ModelAdmin):
@@ -25,3 +25,9 @@ class VoteAdmin(admin.ModelAdmin):
 
     count_voters.short_description = "voters"
     count_canditates.short_description = "candidates"
+
+@register(ElectorsVote)
+class AdminElectorsVote(admin.ModelAdmin):
+    list_display = ['election', 'voter', 'candidate']
+    search_fields = ['election', 'voter', 'candidate']
+    list_filter = ['election', 'candidate']
