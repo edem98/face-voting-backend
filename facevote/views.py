@@ -18,9 +18,7 @@ class FileUploadView(APIView):
     parser_class = (FileUploadParser,)
 
     def post(self, request, *args, **kwargs):
-        print("---------------------")
-        print(request.data)
-        file_serializer = FileSerializer(data=request.data)
+        file_serializer = FileSerializer(request.POST, request.FILES)
         if file_serializer.is_valid():
             print("we got it")
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
