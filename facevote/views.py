@@ -28,7 +28,7 @@ class FileUploadView(View):
                 'image': file._name,
                 'electorId': elector_id
             }
-            return JsonResponse(data, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(data, status=status.HTTP_200_OK)
         else:
             data = {
                 'message': 'An error occured while processing the file',
