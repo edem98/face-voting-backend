@@ -9,7 +9,6 @@ from rest_framework.views import APIView
 from elector.models import Elector
 from elector.api.serializers import ElectorSerializer
 # import serializer
-from .serializers import FileSerializer
 
 @api_view(['GET', ])
 def api_detail_elector_view(request, id):

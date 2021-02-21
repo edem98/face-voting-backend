@@ -41,7 +41,7 @@ class Elector(models.Model):
 
 
 class File(models.Model):
-    file = models.FileField(blank=False, null=False)
+    file = models.ImageField(blank=False, null=False)
     electorId = models.CharField(max_length=10,null=True,blank=True)
 
     def __str__(self):
