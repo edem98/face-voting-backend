@@ -25,8 +25,13 @@ class FileUploadView(APIView):
             print("we got it")
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
+            data = {
+                'file_serializer': file_serializer,
+                'message': 'Ca ne ne marche pas',
+                'donnes': request.data
+            }
             print(file_serializer.errors)
-            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 def upload(request):
     if request.method == "POST":
