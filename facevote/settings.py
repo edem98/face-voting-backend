@@ -26,7 +26,7 @@ SECRET_KEY = '*+ekeb$b0g6_nzxcxh_s9*4jj=n3c=6_kj72o-40y)h8q$s8nu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['64.227.11.112','localhost']
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -264,7 +264,7 @@ JAZZMIN_SETTINGS = {
 }
 
 
-try:
-    from .prod_settings import *
-except ImportError:
-    pass
+# try:
+#     from .prod_settings import *
+# except ImportError:
+#     pass
